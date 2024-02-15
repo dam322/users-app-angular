@@ -24,7 +24,6 @@ export class UserListComponent {
   constructor(private http: HttpClient, private dialog: MatDialog) {
     this.http.get('https://65cc0e65e1b51b6ac484466c.mockapi.io/api/users').subscribe((data: any) => {
       this.users = data;
-      console.log(data);
       this.dataSource = new MatTableDataSource(this.users);
       this.dataSource.paginator = this.paginator;
     });
@@ -38,7 +37,7 @@ export class UserListComponent {
   editarUsuario(user: any): void {
     // Lógica para editar usuario
     const dialogRef = this.dialog.open(UserUpdateComponent, {
-      width: '700px',
+      width: '450px',
       height: '700px',
       data: user
     });
@@ -46,6 +45,7 @@ export class UserListComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The update dialog was closed');
       if(result){
+        console.log('estoy en editarusuario de user list');
         const index = this.users.findIndex((user) => user.id === result.id);
         if(index !== -1) {
           this.users[index] = result;

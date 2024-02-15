@@ -15,7 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButton } from '@angular/material/button';
 import { MatIconButton } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormField } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { UserUpdateComponent } from './user-update/user-update.component';
@@ -47,7 +47,9 @@ import { UserDeleteComponent } from './user-delete/user-delete.component';
     UserUpdateComponent,
     UserDeleteComponent
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
+  ],
   bootstrap: [AppComponent],
 
 
