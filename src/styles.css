@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.img-fluid {
+  max-width: 50px; /* Establece el ancho máximo de la imagen */
+  max-height: 50px; /* Establece la altura máxima de la imagen */
+}
