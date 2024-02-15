@@ -39,7 +39,7 @@ export class UserListComponent {
     // Lógica para editar usuario
     const dialogRef = this.dialog.open(UserUpdateComponent, {
       width: '700px',
-      height: '600px',
+      height: '700px',
       data: user
     });
 
