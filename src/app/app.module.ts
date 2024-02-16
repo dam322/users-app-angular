@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButton } from '@angular/material/button';
-import { MatIconButton } from '@angular/material/button';
+
 import { MatDialogModule } from '@angular/material/dialog';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -36,7 +36,6 @@ import { UserDeleteComponent } from './user-delete/user-delete.component';
     MatTableModule,
     MatPaginatorModule,
     MatButton,
-    MatIconButton,
     MatDialogModule,
     MatFormField,
     MatInputModule,

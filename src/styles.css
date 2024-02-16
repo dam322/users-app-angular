@@ -4,12 +4,12 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .img-fluid {
-  max-width: 50px; /* Establece el ancho máximo de la imagen */
-  max-height: 50px; /* Establece la altura máxima de la imagen */
+  max-width: 50px;
+  max-height: 50px;
 }
 
 .mat-column-id,
-.mat-column-email {
+.mat-column-email{
   width: auto;
   border-right: none;
   padding-right: 0;
@@ -17,8 +17,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
-.form-container {
-  max-width: 400px; /* Ancho máximo del formulario */
-  width: 100%; /* Ajusta el ancho del formulario al 100% */
-}
 

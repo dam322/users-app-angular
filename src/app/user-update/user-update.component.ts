@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 import { User } from '../models/user.model';
 import { catchError, finalize, of } from 'rxjs';
 
+const PHONE_PATTERN = /^[0-9+\-]*$/;
 @Component({
   selector: 'app-user-update',
   templateUrl: './user-update.component.html',
@@ -17,6 +18,7 @@ export class UserUpdateComponent {
   selectedFile: File | undefined;
   imageBase64: string | ArrayBuffer | null = '';
 
+
   constructor(
     public dialogRef: MatDialogRef<UserUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User,
@@ -28,8 +30,8 @@ export class UserUpdateComponent {
     this.userForm = this.formBuilder.group({
       nombres: [this.editUser.nombres, Validators.required],
       apellidos: [this.editUser.apellidos, Validators.required],
-      email: [this.editUser.email, Validators.required],
-      celular: [this.editUser.celular, Validators.required],
+      email: [this.editUser.email, [Validators.required, Validators.email]],
+      celular: [this.editUser.celular, [Validators.required, Validators.pattern(PHONE_PATTERN)]],
       foto: [this.editUser.foto]
     });
   }
@@ -44,7 +46,12 @@ export class UserUpdateComponent {
     if(this.userForm.valid) {
       this.isLoading = true;
       const updatedUserData = this.userForm.value;
-      updatedUserData.foto = this.imageBase64 as string;
+      if(this.imageBase64){
+        updatedUserData.foto = this.imageBase64 as string;
+      }else{
+        updatedUserData.foto = this.editUser.foto;
+      }
+
       this.UserService.updateUser(this.editUser.id, updatedUserData)
       .pipe(
         catchError((error) => {
@@ -73,8 +80,20 @@ export class UserUpdateComponent {
 
   onFileSelected(event: any): void {
     if (event.target.files && event.target.files.length > 0) {
+      if (event.target.files[0].size > 1048576) {
+        alert('No fue posible editar el usuario, tamaño de imagen excede el límite de 1MB');
+        event.target.value = '';
+        return;
+      }
+
+      if(event.target.files[0].type.split('/')[0] !== 'image'){
+        alert('No fue posible editar el usuario, archivo seleccionado no es una imagen');
+        event.target.value = '';
+        return;
+      }
       this.selectedFile = event.target.files[0];
       this.convertToBase64();
+
     }
   }
 

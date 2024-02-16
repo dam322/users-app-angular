@@ -1,41 +1,49 @@
-<h2 class="" style="padding: 10px;">Editar Usuario</h2>
-<form [formGroup]="userForm" class="form-container" style="padding: 20px; align-items: center;" >
-  <div class="form-floating mb-3">
-    <input matInput placeholder="Nombres" formControlName="nombres" id="nombres" class="form-control">
-    <label for="nombres" class="form-label">Nombres</label>
-    <mat-error *ngIf="userForm.get('nombres')?.invalid && userForm.get('nombres')?.touched">
-      El nombre es requerido
-    </mat-error>
+<h2 mat-dialog-title style="padding: 10px;">Editar Usuario</h2>
+<form [formGroup]="userForm" style="padding: 20px; align-items: center;" >
+  <div class="mx-auto">
+    <div class="form-floating mb-3">
+      <input matInput placeholder="Nombres" formControlName="nombres" id="nombres" class="form-control">
+      <label for="nombres" class="form-label">Nombres</label>
+      <mat-error *ngIf="userForm.get('nombres')?.invalid && userForm.get('nombres')?.touched">
+        El nombre es requerido
+      </mat-error>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input matInput placeholder="Apellidos" formControlName="apellidos" id="apellidos" class="form-control">
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <mat-error *ngIf="userForm.get('apellidos')?.invalid && userForm.get('apellidos')?.touched">
+        El apellido es requerido
+      </mat-error>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input matInput placeholder="Email" formControlName="email" id="email" class="form-control">
+      <label for="email" class="form-label">Email</label>
+      <mat-error *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched && userForm.get('email')?.hasError('email')">
+        El email es requerido y debe tener un formato válido
+      </mat-error>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input matInput placeholder="Celular" formControlName="celular" id="celular" class="form-control">
+      <label for="celular" class="form-label">Celular</label>
+      <mat-error *ngIf="userForm.get('celular')?.invalid && userForm.get('celular')?.touched && userForm.get('celular')?.hasError('pattern')">
+        El celular es requerido y debe ser numerico
+      </mat-error>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)" accept="image/*">
+      <label for="formFile" class="form-label">Foto</label>
+    </div>
   </div>
 
-  <div class="form-floating mb-3">
-    <input matInput placeholder="Apellidos" formControlName="apellidos" id="apellidos" class="form-control">
-    <label for="apellidos" class="form-label">Apellidos</label>
-    <mat-error *ngIf="userForm.get('apellidos')?.invalid && userForm.get('apellidos')?.touched">
-      El apellido es requerido
-    </mat-error>
+
+  <div mat-dialog-actions class="d-flex justify-content-center">
+    <button mat-stroked-button color="primary" (click)="onNoClick()">Cancelar</button>
+    <button mat-raised-button color="warn" (click)="onEditUser()">Guardar</button>
   </div>
 
-  <div class="form-floating mb-3">
-    <input matInput placeholder="Email" formControlName="email" id="email" class="form-control">
-    <label for="email" class="form-label">Email</label>
-    <mat-error *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
-      El email es requerido y debe tener un formato válido
-    </mat-error>
-  </div>
 
-  <div class="form-floating mb-3">
-    <input matInput placeholder="Celular" formControlName="celular" id="celular" class="form-control">
-    <label for="celular" class="form-label">Celular</label>
-    <mat-error *ngIf="userForm.get('celular')?.invalid && userForm.get('celular')?.touched">
-      El celular es requerido
-    </mat-error>
-  </div>
-
-  <div class="mb-3">
-    <label for="formFile" class="form-label">Foto</label>
-    <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)" accept="image/*">
-  </div>
-  <button mat-raised-button color="warn" (click)="onEditUser()">Guardar</button>
-  <button mat-stroked-button color="primary" (click)="onNoClick()">Cancelar</button>
 </form>

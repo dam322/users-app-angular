@@ -37,8 +37,7 @@ export class UserListComponent {
   editarUsuario(user: any): void {
     // Lógica para editar usuario
     const dialogRef = this.dialog.open(UserUpdateComponent, {
-      width: '450px',
-      height: '700px',
+      width: '400px',
       data: user
     });
 
@@ -59,7 +58,7 @@ export class UserListComponent {
   eliminarUsuario(userId: number): void {
     // Lógica para eliminar usuario
     const dialogRef = this.dialog.open(UserDeleteComponent, {
-      width: '250px',
+      width: '300px',
       data: userId
     });
 
